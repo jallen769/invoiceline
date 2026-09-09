@@ -1,0 +1,15 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "invoiceline"
+version = "0.1.0"
+description = "Parse invoice line items from plain text, with precise line/column error locations"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+authors = [{ name = "jallen769" }]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/invoiceline"]
