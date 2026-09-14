@@ -14,17 +14,19 @@ where to look.
 One line item per line:
 
 ```
-<quantity> x <description> @ <unit price> [currency]
+<quantity> x <description> @ <unit price> [currency] [discount N%] [tax N%]
 ```
 
-Currency defaults to `USD` if omitted. Blank lines and lines starting with
-`#` are ignored.
+Currency defaults to `USD` if omitted. `discount` and `tax`, when present,
+must appear in that order; both are percentages applied to the line
+subtotal, discount first, then tax on the discounted amount. Blank lines
+and lines starting with `#` are ignored.
 
 ```
 # March consulting
 3 x Widget bracket @ 12.50
-1 x On-site consulting hour @ 150 EUR
-2 x Replacement cable @ 4.99
+1 x On-site consulting hour @ 150 EUR discount 10%
+2 x Replacement cable @ 4.99 tax 8%
 ```
 
 ## Usage
@@ -68,9 +70,11 @@ apart.
 
 ## Status
 
-Early. The format only covers quantity, description, unit price, and
-currency - no tax rates, discounts, or multi-currency totals yet. See the
-issue tracker for what's planned.
+Early. The format covers quantity, description, unit price, currency,
+discount, and tax rate. Still missing: multi-currency invoice totals, a
+serialize/format function to round-trip a `LineItem` back to text, and
+quoted descriptions for when the description itself contains `@` or `x`.
+See the issue tracker for what's planned.
 
 ## License
 
