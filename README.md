@@ -68,13 +68,27 @@ line 1, column 20: expected '@' before the unit price
 callers building their own UI don't have to parse the rendered string back
 apart.
 
+## Totals
+
+Since an invoice can mix currencies line by line, there's no single grand
+total. `totals_by_currency` sums each line item's total, grouped by
+currency code:
+
+```python
+from invoiceline import parse, totals_by_currency
+
+items = parse(source)
+for currency, total in totals_by_currency(items).items():
+    print(currency, total)
+```
+
 ## Status
 
 Early. The format covers quantity, description, unit price, currency,
-discount, and tax rate. Still missing: multi-currency invoice totals, a
-serialize/format function to round-trip a `LineItem` back to text, and
-quoted descriptions for when the description itself contains `@` or `x`.
-See the issue tracker for what's planned.
+discount, and tax rate. Still missing: a test suite covering malformed
+input and error positions, a serialize/format function to round-trip a
+`LineItem` back to text, and quoted descriptions for when the description
+itself contains `@` or `x`. See the issue tracker for what's planned.
 
 ## License
 
