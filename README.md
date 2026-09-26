@@ -85,10 +85,11 @@ for currency, total in totals_by_currency(items).items():
 ## Status
 
 Early. The format covers quantity, description, unit price, currency,
-discount, and tax rate. Still missing: a test suite covering malformed
-input and error positions, a serialize/format function to round-trip a
-`LineItem` back to text, and quoted descriptions for when the description
-itself contains `@` or `x`. See the issue tracker for what's planned.
+discount, and tax rate, with a test suite covering malformed input and
+error positions. Still missing: a serialize/format function to
+round-trip a `LineItem` back to text, and quoted descriptions for when
+the description itself contains `@` or `x`. See the issue tracker for
+what's planned.
 
 ## License
 
