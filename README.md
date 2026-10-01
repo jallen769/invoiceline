@@ -82,13 +82,29 @@ for currency, total in totals_by_currency(items).items():
     print(currency, total)
 ```
 
+## Formatting
+
+`format_item` writes one `LineItem` back out as text, and `format_items`
+writes a list, one line each. The currency is always written explicitly.
+Parsing the output gives back the same items, apart from the `line`
+number.
+
+```python
+from invoiceline import parse, format_items
+
+print(format_items(parse("2 x Replacement cable @ 4.99 tax 8%")), end="")
+# 2 x Replacement cable @ 4.99 USD tax 8%
+```
+
+A description containing `@`, or one that is empty or spans lines, can't
+be written in this format, so `format_item` raises `ValueError` for it.
+
 ## Status
 
 Early. The format covers quantity, description, unit price, currency,
-discount, and tax rate, with a test suite covering malformed input and
-error positions. Still missing: a serialize/format function to
-round-trip a `LineItem` back to text, and quoted descriptions for when
-the description itself contains `@` or `x`. See the issue tracker for
+discount, and tax rate, with a test suite covering malformed input,
+error positions, and formatting. Still missing: quoted descriptions for
+when the description itself contains `@`. See the issue tracker for
 what's planned.
 
 ## License
